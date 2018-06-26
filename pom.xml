@@ -52,6 +52,7 @@
 
         <!-- Plugin versions -->
         <version-editorconfig-maven-plugin>0.0.4</version-editorconfig-maven-plugin>
+        <version-galleon-maven-plugin>2.0.0.Alpha6-SNAPSHOT</version-galleon-maven-plugin>
         <version-exec-maven-plugin>1.4.0</version-exec-maven-plugin>
         <version-license-maven-plugin>1.8</version-license-maven-plugin>
         <version-groovy-maven-plugin>2.0</version-groovy-maven-plugin>
@@ -61,10 +62,12 @@
         <version-maven-jar-plugin>2.6</version-maven-jar-plugin>
         <version-maven-javadoc-plugin>2.9.1</version-maven-javadoc-plugin>
         <version-maven-release-plugin>2.5</version-maven-release-plugin>
+        <version-maven-resources-plugin>3.1.0</version-maven-resources-plugin>
         <version-maven-source-plugin>2.3</version-maven-source-plugin>
         <version-maven-surefire-plugin>2.18.1</version-maven-surefire-plugin>
         <version-wildfly-build-tools>1.2.10.Final</version-wildfly-build-tools>
         <version-wildfly-maven-plugin>1.2.1.Final</version-wildfly-maven-plugin>
+        <version-wildfly-galleon-plugin>2.0.0.Alpha7-SNAPSHOT</version-wildfly-galleon-plugin>
     </properties>
 
     <!-- Source Control -->
@@ -82,6 +85,7 @@
         <module>distro</module>
         <module>docs</module>
         <module>feature</module>
+        <module>galleon-pack</module>
         <module>installer</module>
         <module>jaxws</module>
         <module>itests</module>
@@ -231,6 +235,11 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${version-maven-resources-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${version-maven-surefire-plugin}</version>
                     <configuration>
@@ -258,9 +267,19 @@
                     <version>${version-editorconfig-maven-plugin}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.jboss.galleon</groupId>
+                    <artifactId>galleon-maven-plugin</artifactId>
+                    <version>${version-galleon-maven-plugin}</version>
+                </plugin>
+                <plugin>
                     <groupId>org.wildfly.build</groupId>
                     <artifactId>wildfly-feature-pack-build-maven-plugin</artifactId>
                     <version>${version-wildfly-build-tools}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.wildfly.galleon-plugins</groupId>
+                    <artifactId>wildfly-galleon-maven-plugin</artifactId>
+                    <version>${version-wildfly-galleon-plugin}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.wildfly.plugins</groupId>
@@ -357,6 +376,19 @@
             </snapshots>
         </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Repository Group</name>
+            <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
     <!-- Distribution Management -->
     <distributionManagement>
