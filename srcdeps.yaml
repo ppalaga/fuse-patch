@@ -15,6 +15,7 @@ repositories:
     urls:
     - git:git@github.com:wildfly/wildfly.git
     buildVersionPattern: .*-SNAPSHOT
+    buildRef: revision-5178340ff235075c98d26faba4f616f11f5230fa
     buildArguments:
     - -Prelease
     - -Denforcer.skip
